@@ -11,6 +11,8 @@ cleaning_schedule = [
     ["Baño", "Salón", "Cocina", "Pasillo + Solana"]
 ]
 
+users = ["Diego", "Pablo", "Eli", "Juds"]
+
 
 async def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text('PRUEBA')
@@ -25,23 +27,16 @@ async def weekly_cleaning(
         context: ContextTypes.DEFAULT_TYPE) -> None:
     current_week = datetime.date.today().isocalendar()[1]
     assignments = cleaning_schedule[current_week % len(cleaning_schedule)]
+    if len(assignments) != len(users):
+        return
     response = "Asignaciones de limpieza para esta semana:\n"
-    for i, area in enumerate(assignments):
-        match i:
-            case 0:
-                name = "Diego"
-            case 1:
-                name = "Pablo"
-            case 2:
-                name = "Eli"
-            case 3:
-                name = "Juds"
-        response += f"- {name}: {area}\n"
+    for user, area in zip(users, assignments):
+        response += f"- {user}: {area}\n"
     await context.bot.send_message(chat_id=update.effective_chat.id,
                                    text=response)
 
 
-async def add_expense(
+async def add_expense_test(
         update: Update,
         context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
@@ -57,7 +52,7 @@ def main():
     app.add_handler(CommandHandler("test", test))
     app.add_handler(CommandHandler("hello", hello))
     app.add_handler(CommandHandler("limpiar", weekly_cleaning))
-    app.add_handler(CommandHandler("gasto", add_expense, has_args=3))
+    app.add_handler(CommandHandler("gasto", add_expense_test, has_args=3))
 
     app.run_polling()
 

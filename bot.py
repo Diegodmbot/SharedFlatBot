@@ -1,6 +1,7 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import datetime
+from api_keys import API_KEYS
 
 cleaning_schedule = [
     ["Baño", "Cocina", "Salón", "Pasillo + Solana"],
@@ -47,8 +48,7 @@ async def add_expense_test(
 
 
 def main():
-    app = ApplicationBuilder().token(
-        "8310991019:AAHSGCFtUAtjsQwFHl06mO9TUKLt-BkVa_A").build()
+    app = ApplicationBuilder().token(API_KEYS["telegram_bot"]).build()
     app.add_handler(CommandHandler("test", test))
     app.add_handler(CommandHandler("hello", hello))
     app.add_handler(CommandHandler("limpiar", weekly_cleaning))

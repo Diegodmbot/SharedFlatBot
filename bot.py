@@ -41,13 +41,19 @@ async def add_shopping_item(
     item = ' '.join(args)
     with open("shopping_list.txt", "a") as file:
         file.write(f"{item}\n")
-    pass
 
 
 async def remove_shopping_item(
         update: Update,
         context: ContextTypes.DEFAULT_TYPE) -> None:
-    pass
+    args = context.args
+    item = ' '.join(args)
+    with open("shopping_list.txt", "r") as file:
+        lines = file.readlines()
+    with open("shopping_list.txt", "w") as file:
+        for line in lines:
+            if line.strip("\n") != item:
+                file.write(line)
 
 
 async def show_shopping_list(
@@ -62,7 +68,7 @@ async def show_shopping_list(
 async def reset_shopping_list(
         update: Update,
         context: ContextTypes.DEFAULT_TYPE) -> None:
-    pass
+    open("shopping_list.txt", "w").close()
 
 
 async def add_expense(

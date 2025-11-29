@@ -1,7 +1,8 @@
+import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import datetime
-from api_keys import API_KEYS
+from dotenv import load_dotenv
 
 cleaning_schedule = [
     ["Baño", "Cocina", "Salón", "Pasillo + Solana"],
@@ -12,7 +13,7 @@ cleaning_schedule = [
     ["Baño", "Salón", "Cocina", "Pasillo + Solana"]
 ]
 
-users = ["Diego", "Pablo", "Eli", "Juds"]
+users = ["Diego", "Pablo", "Dario", "Juds"]
 
 
 async def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -48,11 +49,14 @@ async def add_expense_test(
 
 
 def main():
-    app = ApplicationBuilder().token(API_KEYS["telegram_bot"]).build()
+    load_dotenv()
+    API_TOKEN = os.getenv("TELEGRAM_BOT_KEY")
+    app = ApplicationBuilder().token(API_TOKEN).build()
     app.add_handler(CommandHandler("test", test))
     app.add_handler(CommandHandler("hello", hello))
     app.add_handler(CommandHandler("limpiar", weekly_cleaning))
     app.add_handler(CommandHandler("gasto", add_expense_test, has_args=3))
+    print("Bot is running...")
 
     app.run_polling()
 

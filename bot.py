@@ -59,9 +59,11 @@ async def remove_shopping_item(
 async def show_shopping_list(
         update: Update,
         context: ContextTypes.DEFAULT_TYPE) -> None:
-    content = "Lista de la compra:\n"
     with open('shopping_list.txt', 'r') as file:
-        content += file.read()
+        if os.path.getsize('shopping_list.txt') == 0:
+            content += "La lista de la compra está vacía."
+        else:
+            content = f"Lista de la compra:\n {file.read()}"
     await update.message.reply_text(content)
 
 

@@ -57,6 +57,13 @@ def main():
     app.add_handler(CommandHandler("limpiar", weekly_cleaning))
     app.add_handler(CommandHandler("gasto", add_expense_test, has_args=3))
     print("Bot is running...")
+    PORT = int(os.environ.get("PORT", 8000))
+    app.run_webhook(
+        listen="0.0.0.0",
+        port=PORT,
+        webhook_url="https://sharedflatbot.onrender.com"
+    )
+    print(f"Webhook is running on port {PORT}...")
 
     app.run_polling()
 

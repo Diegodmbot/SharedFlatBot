@@ -65,8 +65,6 @@ def main():
     )
     print(f"Webhook is running on port {PORT}...")
 
-    app.run_polling()
-
 
 if __name__ == "__main__":
     main()

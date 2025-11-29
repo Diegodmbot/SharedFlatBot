@@ -53,8 +53,9 @@ async def remove_shopping_item(
 async def show_shopping_list(
         update: Update,
         context: ContextTypes.DEFAULT_TYPE) -> None:
+    content = "Lista de la compra:\n"
     with open('shopping_list.txt', 'r') as file:
-        content = file.read().replace("\n", ", ")
+        content += file.read()
     await update.message.reply_text(content)
 
 

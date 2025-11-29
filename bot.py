@@ -84,21 +84,21 @@ def main():
     API_TOKEN = os.getenv("TELEGRAM_BOT_KEY")
     app = ApplicationBuilder().token(API_TOKEN).build()
     app.add_handler(CommandHandler("test", test))
-    app.add_handler(CommandHandler("limpiar", weekly_cleaning))
+    app.add_handler(CommandHandler("clean", weekly_cleaning))
     app.add_handler(
         CommandHandler(
-            "añadir_articulo",
+            "add_item",
             add_shopping_item,
             has_args=True))
     app.add_handler(
         CommandHandler(
-            "quitar_articulo",
+            "remove_item",
             remove_shopping_item,
             has_args=True))
-    app.add_handler(CommandHandler("lista", show_shopping_list))
-    app.add_handler(CommandHandler("borrar_lista", reset_shopping_list))
-    app.add_handler(CommandHandler("gasto", add_expense, has_args=3))
-    app.add_handler(CommandHandler("deudas", show_debts))
+    app.add_handler(CommandHandler("shopping_list", show_shopping_list))
+    app.add_handler(CommandHandler("reset_list", reset_shopping_list))
+    app.add_handler(CommandHandler("add_expense", add_expense, has_args=3))
+    app.add_handler(CommandHandler("show_debts", show_debts))
     PORT = int(os.environ.get("PORT", 8000))
     app.run_webhook(
         listen="0.0.0.0",

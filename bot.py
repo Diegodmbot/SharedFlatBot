@@ -112,7 +112,7 @@ def main():
     app.run_webhook(
         listen="0.0.0.0",
         port=PORT,
-        webhook_url="https://sharedflatbot.onrender.com"
+        webhook_url="https://sharedflatbot-810865989130.europe-west1.run.app"
     )
 
 

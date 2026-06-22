@@ -9,12 +9,12 @@
 substitutions:
   _REGION: europe-southwest1
   _SERVICE_NAME: shared-flat-bot
-  _IMAGE: europe-southwest1-docker.pkg.dev/project-42fe1a2b-fe7d-4cf0-bd6/shared-flat-bot
+  _IMAGE: europe-southwest1-docker.pkg.dev/shared-flat-bot/shared-flat-bot
 
 options:
   logging: CLOUD_LOGGING_ONLY # Evita el error de logs bucket con service account
 
-serviceAccount: "projects/project-42fe1a2b-fe7d-4cf0-bd6/serviceAccounts/326592649239-compute@developer.gserviceaccount.com"
+serviceAccount: "projects/shared-flat-bot/serviceAccounts/326592649239-compute@developer.gserviceaccount.com"
 # ↑ Reemplaza SA_EMAIL por el email real de tu service account, o elimina esta línea
 #   si usas la cuenta de servicio por defecto de Cloud Build.
 

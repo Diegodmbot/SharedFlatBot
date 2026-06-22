@@ -9,7 +9,7 @@
 substitutions:
   _REGION: europe-southwest1
   _SERVICE_NAME: shared-flat-bot
-  _IMAGE: gcr.io/project-42fe1a2b-fe7d-4cf0-bd6/shared-flat-bot
+  _IMAGE: europe-southwest1-docker.pkg.dev/project-42fe1a2b-fe7d-4cf0-bd6/shared-flat-bot
 
 options:
   logging: CLOUD_LOGGING_ONLY # Evita el error de logs bucket con service account

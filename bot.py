@@ -109,6 +109,11 @@ def main():
     app.add_handler(CommandHandler("add_expense", add_expense, has_args=3))
     app.add_handler(CommandHandler("show_debts", show_debts))
     app.run_polling()
+    print("Bot started. Listening for commands...")
+    # create shopping_list.txt if it doesn't exist
+    if not os.path.exists("shopping_list.txt"):
+        open("shopping_list.txt", "w").close()
+        print("Created shopping_list.txt file.")
 
 
 if __name__ == "__main__":

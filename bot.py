@@ -41,6 +41,8 @@ async def add_shopping_item(
     item = ' '.join(args)
     with open("shopping_list.txt", "a") as file:
         file.write(f"{item}\n")
+        await context.bot.send_message(chat_id=update.effective_chat.id,
+                                       text=f"Se ha añadido '{item}' a la lista de la compra.")
 
 
 async def remove_shopping_item(
@@ -54,6 +56,8 @@ async def remove_shopping_item(
         for line in lines:
             if line.strip("\n") != item:
                 file.write(line)
+    await context.bot.send_message(chat_id=update.effective_chat.id,
+                                   text=f"Se ha eliminado '{item}' de la lista de la compra.")
 
 
 async def show_shopping_list(
@@ -71,6 +75,8 @@ async def reset_shopping_list(
         update: Update,
         context: ContextTypes.DEFAULT_TYPE) -> None:
     open("shopping_list.txt", "w").close()
+    await context.bot.send_message(chat_id=update.effective_chat.id,
+                                   text="Se ha reiniciado la lista de la compra.")
 
 
 async def add_expense(

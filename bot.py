@@ -108,12 +108,7 @@ def main():
     app.add_handler(CommandHandler("reset_list", reset_shopping_list))
     app.add_handler(CommandHandler("add_expense", add_expense, has_args=3))
     app.add_handler(CommandHandler("show_debts", show_debts))
-    PORT = int(os.environ.get("PORT", 8000))
-    app.run_webhook(
-        listen="0.0.0.0",
-        port=PORT,
-        webhook_url="https://sharedflatbot-810865989130.europe-west1.run.app"
-    )
+    app.run_polling()
 
 
 if __name__ == "__main__":
